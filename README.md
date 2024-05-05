@@ -24,6 +24,12 @@ invoke
 
 ```
 
+### Additional color schemas
+
+See installation instructions at:
+
+https://github.com/flazz/vim-colorschemes/tree/master
+
 ## Rust setup
 
 1) install rust
