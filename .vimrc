@@ -2,7 +2,8 @@ set nocompatible              " be iMproved
 filetype off                  " required!
 
 call plug#begin('~/.vim/plugged')
-
+Plug 'tomtom/tlib_vim'
+Plug 'marcweber/vim-addon-mw-utils'
 Plug 'kien/ctrlp.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
@@ -18,13 +19,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'markonm/traces.vim'
 Plug 'lervag/vimtex'
-
+Plug 'garbas/vim-snipmate'
 call plug#end()
 
-if has('nvim')
-    set guicursor=
-    set inccommand=nosplit
-end
+:imap <C-J> <Plug>snipMateNextOrTrigger
 
 let g:lightline = {
       \ 'colorscheme': 'powerline',
@@ -83,23 +81,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> ga <Plug>(coc-codeaction-selected)<cr>
-
-" go
-let g:go_highlight_methods = 1
-let g:go_highlight_interfaces= 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_code_completion_enabled = 1
-
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-
-let g:auto_type_info=0
-let g:go_auto_sameids=0
-
-let g:go_list_type = "quickfix"
 
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
@@ -239,24 +220,11 @@ map <leader>N :bp<cr>
 map <leader>f :CtrlP<cr>
 map <leader>F :CtrlPMRU<cr>
 map <leader>t :NERDTreeToggle<CR>
+map <leader>ide :NERDTreeToggle<CR><c-w>l :bel term<CR> <c-w>k
+map <leader>e yy <c-w>j <c-c> <c-w>""<cr> <c-w>k :nohl<cr>
 map <leader>T :NERDTreeFind<CR>
 map <leader>ust :set softtabstop=2 <bar> :set shiftwidth=2 <bar> :set tabstop=2<cr>
 map <leader>et :set expandtab!
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" open ide mode and execute line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>ide :NERDTreeToggle<CR><c-w>l :bel term<CR> <c-w>k
-map <leader>e yy <c-w>j <c-c> <c-w>""<cr> <c-w>k :nohl<cr>
-
-""""""""""""""""""""""""""""""""""
-" DISABLE ARROW KEYS 
-""""""""""""""""""""""""""""""""""
-"map <up> <nop>
-"map <down> <nop>
-"map <left> <nop>
-"map <right> <nop>
-"map q <nop>
 
 inoremap <Nul> <C-x><C-o>
 vnoremap . :normal .<CR>
@@ -266,4 +234,3 @@ set clipboard=unnamedplus
 nnoremap <leader>w :w<cr>
 
 set encoding=utf-8
-
