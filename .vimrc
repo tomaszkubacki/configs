@@ -243,6 +243,12 @@ map <leader>T :NERDTreeFind<CR>
 map <leader>ust :set softtabstop=2 <bar> :set shiftwidth=2 <bar> :set tabstop=2<cr>
 map <leader>et :set expandtab!
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" open ide mode and execute line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>ide :NERDTreeToggle<CR><c-w>l :bel term<CR> <c-w>k
+map <leader>e yy <c-w>j <c-c> <c-w>""<cr> <c-w>k :nohl<cr>
+
 """"""""""""""""""""""""""""""""""
 " DISABLE ARROW KEYS 
 """"""""""""""""""""""""""""""""""
