@@ -1,6 +1,10 @@
 # Configurations
 
-My various configurations
+## vim configuration
+
+vimrc_light - light version of vimrc used with Plug NerdTree
+
+vimrc_ide - all from vimrc_light plus coc for rustlang developemnt (autocompletion)
 
 ## vim with plugins
 
