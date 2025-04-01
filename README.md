@@ -1,5 +1,12 @@
 # Configurations
 
+my various configs
+
+## sway configuration
+
+basic sway config with waybar
+in .config/sway and .config/waybar
+
 ## vim configuration
 
 vimrc_light - light version of vimrc used with Plug NerdTree
