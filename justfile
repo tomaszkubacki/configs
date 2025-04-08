@@ -19,6 +19,8 @@ enable display="all":
             do
              swaymsg output $i enable
             done
+            swaymsg output DP-5 pos 0 0
+            swaymsg output DP-7 pos 0 1200
             ;;
         "laptop")
             for i in `swaymsg -t get_outputs | jq '.[] | .name'`;
