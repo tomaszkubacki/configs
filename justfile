@@ -78,7 +78,7 @@ evening:
 day:
    light -S 25
 
-#show typed keys
+#show typed keys on the screen
 showkeys:
    wshowkeys -a bottom
 
