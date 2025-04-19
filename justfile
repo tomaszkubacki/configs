@@ -5,6 +5,8 @@ help:
 # shutdowns computer
 get_off:
    shutdown -h now
+suspend:
+    systemctl suspend
 
 # list available displays
 displays:
@@ -21,6 +23,7 @@ enable display="all":
             done
             swaymsg output DP-5 pos 0 0
             swaymsg output DP-7 pos 0 1200
+            swaymsg output eDP-1 pos 3400 1200
             ;;
         "laptop")
             for i in `swaymsg -t get_outputs | jq '.[] | .name'`;
