@@ -5,6 +5,8 @@ help:
 # shutdowns computer
 get_off:
    shutdown -h now
+
+# suspend laptop
 suspend:
     systemctl suspend
 
@@ -85,4 +87,10 @@ day:
 showkeys:
    wshowkeys -a bottom
 
+# send file to www
+[no-cd]
+send_www file:
+    #!/usr/bin/env bash
+    full_path=`pwd`/{{file}}
+    rsync -arvtP -e 'ssh -p 2222' $full_path b59vb9w-ssh@185.129.138.218:/web/htdocs/www.moocode.net/home/www/files
 
