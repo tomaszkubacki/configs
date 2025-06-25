@@ -65,7 +65,7 @@ set ignorecase smartcase
 set nocursorline
 set nocursorcolumn
 "set relativenumber
-set cmdheight=2
+set cmdheight=1
 set switchbuf=useopen
 set showtabline=4
 set winwidth=79
