@@ -42,9 +42,29 @@ function typewriter(keys, mode, escape_csi, delay_ms)
 end
 
 function execute_selection()
-  -- Yank the current line into the default register
-  vim.cmd('normal! ""yy')
-  local text = vim.fn.getreg('"')
+  local current_line_idx = vim.api.nvim_win_get_cursor(0)[1]
+  local total_lines = vim.api.nvim_buf_line_count(0)
+  
+  -- Pobieranie pojedynczej linii lub pełnego bloku połączonego znakiem '\'
+  local lines = {}
+  local idx = current_line_idx
+  
+  while idx <= total_lines do
+    local line = vim.api.nvim_buf_get_lines(0, idx - 1, idx, false)[1] or ""
+    
+    -- Sprawdzanie czy linia kończy się na '\' (po odrzuceniu spacji na końcu)
+    local trimmed = line:gsub("%s+$", "")
+    if trimmed:sub(-1) == "\\" then
+      -- Usuń znak '\' z końca i dodaj spację, łącząc z następną linią
+      table.insert(lines, trimmed:sub(1, -2) .. " ")
+      idx = idx + 1
+    else
+      table.insert(lines, line)
+      break
+    end
+  end
+
+  local text = table.concat(lines, "")
 
   local snacks_terminal = require("snacks.terminal")
   local terminal = snacks_terminal.get()
@@ -55,11 +75,10 @@ function execute_selection()
   local term_buf = terminal and terminal.buf
   local term_win = terminal and terminal.win
 
-  -- Only call :show() if the window is NOT already open
+  -- Pokaż okno tylko jeśli nie jest widoczne
   local win_valid = term_win and vim.api.nvim_win_is_valid(term_win)
   if not win_valid then
     terminal:show()
-    -- refresh window handle
     term_win = terminal.win
   end
 
@@ -71,8 +90,6 @@ function execute_selection()
       vim.api.nvim_set_current_buf(term_buf)
       vim.cmd("startinsert")
       vim.api.nvim_feedkeys(text, "t", false)
-      -- typewriter(text .. "\n", "t")
-
       vim.api.nvim_feedkeys("\r", "t", false) -- Enter
     end)
   else
