@@ -1,4 +1,11 @@
-# Configurations
+# My provision configuration
+
+!!! TODO
+- create just command for basic provision any machine for dev instead of pure files
+- copy just necessary files (not all confis for neovim eg)
+- create just command installing default software
+- use imports
+
 
 my various configs
 
