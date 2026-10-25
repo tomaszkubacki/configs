@@ -7,12 +7,19 @@ sudo snap install just
 ```
 
 
-## Repository structure
+## install
 
-**home** - contains all files to be copied to home direcotry
+copy entire repo to your home dir
 
-prov - contains provisioning commands as just command runner commands
+```shell
+cp -rf * ~/
+```
 
+
+## repos structure
+
+**just** - contains all just commands splitted into modules
+.config - contains various config files
 
 ## TODO
 - create just command for basic provision any machine for dev instead of pure files
