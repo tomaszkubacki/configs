@@ -10,7 +10,7 @@ machine-prov:
   sudo apt-get update
   sudo apt-get upgrade
   sudo apt-get install tmux ranger
-  sudo snap install nvim 
+  sudo snap install nvim --classic
   sudo snap install rustup --classic
   cargo install gitui --locked
 
