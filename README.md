@@ -7,7 +7,6 @@ sudo snap install just
 ```
 
 
-
 ## Repository structure
 
 **home** - contains all files to be copied to home direcotry

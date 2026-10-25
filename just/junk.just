@@ -1,9 +1,4 @@
-set dotenv-load
-
-# disply this help
-help:
-  just --list
-
+# backup obsidian
 backup-obs msg = "feat: backup":
     #!/bin/bash
     cd Dokumenty/Obsidian\ Vault/
@@ -19,10 +14,6 @@ get_off:
 # suspend laptop
 suspend:
   systemctl suspend
-
-# update system
-update:
-  sudo apt-get -y update && sudo apt-get -y upgrade && sudo snap refresh
 
 # paste text to pastebin
 paste file:
@@ -77,11 +68,4 @@ wg_down name:
 wg_list:
    sudo ls /etc/wireguard/
 
-# basic provisioning 
-provision:
-  #!/usr/bin/env bash
-  sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get install tmux nvim
-  sudo snap install rustup --classic
-  cargo install gitui --locked
+
