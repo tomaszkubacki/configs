@@ -12,7 +12,7 @@ sudo snap install just
 copy entire repo to your home dir
 
 ```shell
-cp -rf * ~/
+cp -rf just justfile .config ~/
 ```
 
 
@@ -26,5 +26,6 @@ cp -rf * ~/
 - copy just necessary files (not all confis for neovim eg)
 - create just command installing default software
 - use imports
+- review just/junk.just
 
 
