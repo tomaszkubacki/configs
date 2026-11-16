@@ -36,7 +36,7 @@ www_files:
 
 # backup data to remote server
 backup:
-    rsync -arvtP -e 'ssh -p $WWW_PORT' --delete ~/to_backup/* $WWW_USER@$WWW_IP:~/backup-moocode/
+    rclone copy ~/to_backup moocode:backup --progress
 
 # list jdks
 [group("jdk")]
