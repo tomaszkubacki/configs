@@ -5,15 +5,6 @@ backup-obs msg = "feat: backup":
     git add .
     git commit -m "{{msg}}"
     git push
-    
-
-# shutdowns computer
-get_off:
-  shutdown -h now
-
-# suspend laptop
-suspend:
-  systemctl suspend
 
 # paste text to pastebin
 paste file:
@@ -26,35 +17,37 @@ paste file:
 send_www file:
   #!/usr/bin/env bash
   full_path=`pwd`/{{file}}
-  rsync -arvtP -e 'ssh -p $WWW_PORT' $full_path $WWW_USER@$WWW_IP:/web/htdocs/www.${WWW_HOST}/home/www/files
+  rclone copy $full_path moocode:www/files
+  target_url=https://${WWW_HOST}/files/{{file}}
+  echo '{{BOLD + CYAN + BG_BLACK}}'$target_url'{{NORMAL}}'
+  echo $target_url | wl-copy
 
-# file list www
+
+# list files in on moocode site at /files
 [no-cd]
-www_files:
+browse_files:
   #!/usr/bin/env bash
-  ssh $WWW_USER@$WWW_IP -p $WWW_PORT -t "cd /web/htdocs/www.${WWW_HOST}/home/www/files; ls" | xargs -I {} echo "https://${WWW_HOST}/files/{}"
+  rclone ncdu moocode:www/files
 
 # backup data to remote server
-backup:
-    rclone copy ~/to_backup moocode:backup --progress
+backup: 
+  #!/usr/bin/env bash
+  echo '~/to_backup dir backup'
+  rclone copy ~/to_backup moocode:backup --progress
 
 # list jdks
 [group("jdk")]
 jdks:
-     update-java-alternatives --list
+  update-java-alternatives --list
 
 # set jdk version
 [group("jdk")]
 jdk jdk_version:
-    sudo update-java-alternatives --set {{jdk_version}}
+   sudo update-java-alternatives --set {{jdk_version}}
 
 # test kolorków
 @foo:
   echo '{{BOLD + STRIKETHROUGH + CYAN + BG_RED}}Hi!{{NORMAL}} tomek'
-
-# copy entry from priv/bk/key
-bk key:
-    pass priv/bk/{{key}} -c
 
 # wg vpn up
 wg_up name:
