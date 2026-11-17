@@ -6,6 +6,16 @@ backup-obs msg = "feat: backup":
     git commit -m "{{msg}}"
     git push
 
+# backup config
+backup-config msg = "feat: backup config":
+    #!/bin/bash
+    cp just/* projects/configs/just
+    cp justfile projects/configs/
+    cd projects/configs
+    git add .
+    git commit -m "{{msg}}"
+    git push
+
 # paste text to pastebin
 paste file:
   #!/usr/bin/env bash
@@ -23,7 +33,7 @@ send_www file:
   echo $target_url | wl-copy
 
 
-# list files in on moocode site at /files
+# list files at moocode/files
 [no-cd]
 browse_files:
   #!/usr/bin/env bash
